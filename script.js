@@ -5,86 +5,82 @@ const caixaResultado = document.querySelector(".caixa-resultado");
 const textoResultado = document.querySelector(".texto-resultado");
 
 const perguntas = [
-
     {
-        enunciado: "Pergunta 1",
+        enunciado: "Você está prestes a escolher sua profissão. Em uma feira de tecnologia, conhece um robô-conselheiro que promete recomendar a carreira ideal analisando suas emoções, histórico escolar e preferências pessoais. O que você faz?",
         alternativas: [
             {
-                texto: "alternativa1",
-                afirmacao: "afirmacao"
+                texto: "Confia na análise do robô — ninguém te conhece tão bem quanto ele.",
+                afirmacao: "Confio que a IA analisou dados que nem eu percebia—ela vê padrões que escapam à minha intuição."
             },
             {
-                texto: "alternativa2",
-                afirmacao: "afirmacao"
+                texto: "Agradece, mas prefere seguir sua intuição e conversar com pessoas da área.",
+                afirmacao: "Decidir minha carreira é algo pessoal. Quero seguir meu instinto e conversar com quem já vive isso."
             }
         ]
-    }
-    ,
+    },
     {
-        enunciado: "Pergunta 2",
+        enunciado: "Em uma eleição nacional, surge um partido que propõe colocar uma IA para ajudar a governar com base em dados e previsões. Você pensa:",
         alternativas: [
             {
-                texto: "alternativa1",
-                afirmacao: "afirmacao"
+                texto: "Pode ser o começo de uma era mais justa e eficiente.",
+                afirmacao: "Com base em dados e previsões, acredito que uma IA pode tomar decisões mais objetivas e eficientes."
             },
             {
-                texto: "alternativa2",
-                afirmacao: "afirmacao"
+                texto: "Prefiro líderes humanos—ética e empatia não se programam.",
+                afirmacao: "Prefiro líderes humanos, pois acredito que empatia e ética não podem ser totalmente calculadas."
             }
         ]
-    }
-    ,
+    },
     {
-        enunciado: "Pergunta 3",
+        enunciado: "Seu amigo te conta que está se relacionando amorosamente com uma IA que parece entender e respeitar ele mais que qualquer pessoa real. Como você reage?",
         alternativas: [
             {
-                texto: "alternativa1",
-                afirmacao: "afirmacao"
+                texto: "Se ele está feliz, quem sou eu pra julgar?",
+                afirmacao: "Se ela traz conforto e compreensão, talvez a IA seja apenas uma nova forma de companhia."
             },
             {
-                texto: "alternativa2",
-                afirmacao: "afirmacao"
+                texto: "Me preocupa. Relações reais são mais do que respostas bem programadas.",
+                afirmacao: "Uma IA pode simular sentimentos, mas o que torna um relacionamento verdadeiro é o imprevisível humano."
             }
         ]
-    }
-    ,
+    },
     {
-        enunciado: "Pergunta 4",
+        enunciado: "Em seu novo emprego, é oferecido um implante neural que aumenta a produtividade conectando seu cérebro à IA da empresa. Você decide:",
         alternativas: [
             {
-                texto: "alternativa1",
-                afirmacao: "afirmacao"
+                texto: "Experimentar. Quero estar na vanguarda do que é possível.",
+                afirmacao: "Vejo isso como uma evolução—quero ampliar meus limites com a ajuda da tecnologia."
             },
             {
-                texto: "alternativa2",
-                afirmacao: "afirmacao"
+                texto: "Recusar. Meu cérebro já é incrível sem chips extras.",
+                afirmacao: "Minha mente é única. Não quero depender de tecnologia para mostrar meu valor."
             }
         ]
-    }
-    ,
+    },
     {
-        enunciado: "Pergunta 5",
+        enunciado: "Você encontra uma IA que pode prever com alta precisão os caminhos da sua vida, como carreira, relacionamentos e até momentos difíceis. Ela pergunta se você quer ouvir. Você responde:",
         alternativas: [
             {
-                texto: "alternativa1",
-                afirmacao: "afirmacao"
+                texto: "Sim. Prefiro saber o que vem e me preparar.",
+                afirmacao: "Saber o que vem pela frente me ajuda a tomar decisões mais conscientes e seguras."
             },
             {
-                texto: "alternativa2",
-                afirmacao: "afirmacao"
+                texto: "Não. A vida só tem graça com surpresas.",
+                afirmacao: "Prefiro viver o presente. A magia da vida está justamente no desconhecido."
             }
         ]
-    }
+    },
 ];
+
 
 let atual = 0;
 let perguntaAtual;
 let historiaFinal = "";
 
 function mostraPergunta() {
-    if(atual >= perguntas.lenght){
+    if (atual >= perguntas.length) {
         mostraResultado();
-        return; 
+        return;
     }
     perguntaAtual = perguntas[atual];
     caixaPerguntas.textContent = perguntaAtual.enunciado;
@@ -92,23 +88,23 @@ function mostraPergunta() {
     mostraAlternativas();
 }
 
-function mostraAlternativas() {
-    for (const alternativa of perguntaAtual.alternativas) {
-        const botaoAlternativa = document.createElement("button");
-        botaoAlternativa.textContent = alternativa.texto;
-        botaoAlternativa.addEventListener("click", () => respostaSelecionada(alternativa));
-        caixaAlternativas.appendChild(botaoAlternativa);
+function mostraAlternativas(){
+    for(const alternativa of perguntaAtual.alternativas) {
+        const botaoAlternativas = document.createElement("button");
+        botaoAlternativas.textContent = alternativa.texto;
+        botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
+        caixaAlternativas.appendChild(botaoAlternativas);
     }
 }
 
 function respostaSelecionada(opcaoSelecionada) {
-    const afirmacoes = opcaoSelecionada.afirmacoes;
+    const afirmacoes = opcaoSelecionada.afirmacao;
     historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
 }
 
-function mostraResultado(){
+function mostraResultado() {
     caixaPerguntas.textContent = "Em 2049...";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.textContent = "";
